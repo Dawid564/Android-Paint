@@ -60,4 +60,8 @@
             android:onClick=""/>
 
     </LinearLayout>
+    <com.example.chucknorris.friendlycanvas.Drawing
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -16,8 +17,8 @@ public class Drawing extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
 
-    public Drawing(Context context){
-        super(context);
+    public Drawing(Context context, AttributeSet attrs){
+        super(context, attrs);
         paintSetup();
     }
 

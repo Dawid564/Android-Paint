@@ -10,11 +10,13 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Drawing dr = new Drawing(this);
+    private Drawing dr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //dr = (Drawing) findViewById(R.id.)
     }
 
 }
