@@ -17,9 +17,13 @@ public class Drawing extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
 
+    public Drawing(Context context){
+        super(context);
+    }
+
     public Drawing(Context context, AttributeSet attrs){
         super(context, attrs);
-        paintSetup();
+        paintSetup(0xFFFF0000);
     }
 
     @Override
@@ -36,13 +40,15 @@ public class Drawing extends View {
             default:
                 return false;
         }
-        postInvalidate();
+        invalidate();
         return true;
     }
 
-    private void paintSetup(){
-        paint.setColor(0xFFFF0000);
+    protected void paintSetup(int color){
+        invalidate();
+        paint.setColor(color);
         paint.setStyle(Paint.Style.STROKE);
+
     }
 
     @Override
