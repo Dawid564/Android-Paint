@@ -8,14 +8,17 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Chuck Norris on 2016-09-28.
  */
 public class Drawing extends View {
 
-    private Paint paint = new Paint();
+    private Paint paint;
     private Path path = new Path();
+    private ArrayList<ColorHolder> colorHolder = new ArrayList<>();
 
     public Drawing(Context context){
         super(context);
@@ -32,10 +35,14 @@ public class Drawing extends View {
         float y = event.getY();
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                path.moveTo(x,y);
+                colorHolder.get(colorHolder.size() - 1).path.moveTo(x,y);
                 break;
             case  MotionEvent.ACTION_MOVE:
-                path.lineTo(x,y);
+                colorHolder.get(colorHolder.size() - 1).path.lineTo(x,y);
+                //path.lineTo(x,y);
+                break;
+            case MotionEvent.ACTION_UP:
+                //nextPath = new Path(path);
                 break;
             default:
                 return false;
@@ -45,14 +52,13 @@ public class Drawing extends View {
     }
 
     protected void paintSetup(int color){
-        invalidate();
-        paint.setColor(color);
-        paint.setStyle(Paint.Style.STROKE);
-
+        colorHolder.add(new ColorHolder(color));
     }
 
     @Override
     public void onDraw(Canvas canvas){
-        canvas.drawPath(path,paint);
+        for(ColorHolder holder : colorHolder){
+            canvas.drawPath(holder.path, holder.paint);
+        }
     }
 }

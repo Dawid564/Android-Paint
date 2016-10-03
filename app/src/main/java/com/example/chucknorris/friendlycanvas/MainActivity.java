@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dr = (Drawing) findViewById(R.id.drawing);
     }
 
     public void red_color(View v){
@@ -28,8 +27,13 @@ public class MainActivity extends AppCompatActivity {
         setDrawSettings(0xFF00FF00);
     }
 
-    public void setDrawSettings(int color){
-        dr.paintSetup(color);
+    public void blue_color(View v){
+        setDrawSettings(0xFF0000FF);
     }
 
+    public void setDrawSettings(int color){
+        //dr = new Drawing(this);
+        dr = (Drawing) findViewById(R.id.drawing);
+        dr.paintSetup(color);
+    }
 }

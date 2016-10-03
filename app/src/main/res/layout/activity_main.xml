@@ -62,7 +62,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:id="@+id/blue"
-                android:background="#FF0000FF" />
+                android:background="#FF0000FF"
+                android:onClick="blue_color"/>
             <ImageButton
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
