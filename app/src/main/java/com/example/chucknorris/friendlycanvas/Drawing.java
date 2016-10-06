@@ -2,13 +2,12 @@ package com.example.chucknorris.friendlycanvas;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -16,9 +15,9 @@ import java.util.ArrayList;
  */
 public class Drawing extends View {
 
-    private Paint paint;
-    private Path path = new Path();
-    private ArrayList<ColorHolder> colorHolder = new ArrayList<>();
+    //private Paint paint;
+    //private Path path = new Path();
+    private List<ColorHolder> colorHolder = new ArrayList<>();
 
     public Drawing(Context context){
         super(context);
@@ -34,9 +33,11 @@ public class Drawing extends View {
         float x = event.getX();
         float y = event.getY();
         switch(event.getAction()){
+            //some problem with action down
             case MotionEvent.ACTION_DOWN:
                 colorHolder.get(colorHolder.size() - 1).path.moveTo(x,y);
-                break;
+                //path.moveTo(x,y);
+                return true;
             case  MotionEvent.ACTION_MOVE:
                 colorHolder.get(colorHolder.size() - 1).path.lineTo(x,y);
                 //path.lineTo(x,y);

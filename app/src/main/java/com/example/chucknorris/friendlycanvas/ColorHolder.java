@@ -21,6 +21,8 @@ public class ColorHolder {
         paint = new Paint();
         paint.setColor(this.color);
         paint.setStrokeWidth(20);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
     public Path getPath(){
