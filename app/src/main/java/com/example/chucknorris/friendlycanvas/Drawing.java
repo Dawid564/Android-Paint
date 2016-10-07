@@ -1,6 +1,7 @@
 package com.example.chucknorris.friendlycanvas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -28,6 +29,28 @@ public class Drawing extends View {
         paintSetup(0xFFFF0000);
     }
 
+    public void resetDraw(int i){
+        colorHolder.get(colorHolder.size()-i).path.reset();
+        invalidate();
+    }
+
+    public void resetDraw(){
+        /*
+        working version
+        for(ColorHolder holder:colorHolder){
+            holder.path.reset();
+        }
+        */
+        for(int i=0; i<colorHolder.size(); i++){
+            colorHolder.get(colorHolder.size()-i-1).path.reset();
+        }
+        invalidate();
+    }
+
+    public void sendResetToDrawBack(View v){
+        //Intent i = new Intent(v.class, MainActivity.class);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event){
         float x = event.getX();
@@ -35,7 +58,9 @@ public class Drawing extends View {
         switch(event.getAction()){
             //some problem with action down
             case MotionEvent.ACTION_DOWN:
+                colorHolder.add(new ColorHolder(colorHolder.get(colorHolder.size() - 1).getPaintColor())); // one touch one path
                 colorHolder.get(colorHolder.size() - 1).path.moveTo(x,y);
+                sendResetToDrawBack(Drawing.this);
                 //path.moveTo(x,y);
                 return true;
             case  MotionEvent.ACTION_MOVE:
@@ -52,6 +77,7 @@ public class Drawing extends View {
         return true;
     }
 
+    //change color, add new object
     protected void paintSetup(int color){
         colorHolder.add(new ColorHolder(color));
     }

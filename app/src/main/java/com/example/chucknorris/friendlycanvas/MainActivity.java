@@ -1,22 +1,41 @@
 package com.example.chucknorris.friendlycanvas;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private Drawing dr;
+    private int backValue = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void backBtn(View v){
+        try{
+            dr = (Drawing) findViewById(R.id.drawing);
+            dr.resetDraw(backValue);
+            backValue++;
+        }catch (Exception e){
+            Toast.makeText(this, "No more draw back", Toast.LENGTH_LONG);
+        }
+    }
+
+    public void resetBtn(View v){
+        dr = (Drawing) findViewById(R.id.drawing);
+        dr.resetDraw();
     }
 
     public void red_color(View v){
@@ -29,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void blue_color(View v){
         setDrawSettings(0xFF0000FF);
+    }
+
+    public void blackColor(View v){
+        setDrawSettings(0xFF000000);
+    }
+
+    public void whiteColor(View v){
+        setDrawSettings(0xFFFFFFFF);
     }
 
     public void setDrawSettings(int color){

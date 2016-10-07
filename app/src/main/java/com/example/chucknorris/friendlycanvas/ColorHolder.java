@@ -11,6 +11,10 @@ public class ColorHolder {
     public Path path;
     public Paint paint;
 
+    public ColorHolder(){
+        init();
+    }
+
     public ColorHolder(int color){
         this.color = color;
         init();
@@ -31,5 +35,9 @@ public class ColorHolder {
 
     public Paint getPaint(){
         return this.paint;
+    }
+
+    public int getPaintColor(){
+        return paint.getColor();
     }
 }
