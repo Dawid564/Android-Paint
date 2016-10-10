@@ -1,5 +1,6 @@
 package com.example.chucknorris.friendlycanvas;
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Path;
 
@@ -11,13 +12,14 @@ public class ColorHolder {
     public Path path;
     public Paint paint;
 
-    public ColorHolder(){
-        init();
-    }
 
     public ColorHolder(int color){
         this.color = color;
         init();
+    }
+
+    private void sendControlMessage(){
+
     }
 
     private void init(){

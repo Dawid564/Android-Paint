@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Drawing extends View {
     //private Paint paint;
     //private Path path = new Path();
     private List<ColorHolder> colorHolder = new ArrayList<>();
+    private int backValue = 1;
 
     public Drawing(Context context){
         super(context);
@@ -30,7 +32,10 @@ public class Drawing extends View {
     }
 
     public void resetDraw(int i){
-        colorHolder.get(colorHolder.size()-i).path.reset();
+        // i using argument in older version, now is ony for function overload
+        //
+        colorHolder.get(colorHolder.size()-1).path.reset();
+        colorHolder.remove(colorHolder.size()-1);
         invalidate();
     }
 
@@ -47,20 +52,15 @@ public class Drawing extends View {
         invalidate();
     }
 
-    public void sendResetToDrawBack(View v){
-        //Intent i = new Intent(v.class, MainActivity.class);
-    }
-
     @Override
     public boolean onTouchEvent(MotionEvent event){
         float x = event.getX();
         float y = event.getY();
         switch(event.getAction()){
-            //some problem with action down
             case MotionEvent.ACTION_DOWN:
                 colorHolder.add(new ColorHolder(colorHolder.get(colorHolder.size() - 1).getPaintColor())); // one touch one path
                 colorHolder.get(colorHolder.size() - 1).path.moveTo(x,y);
-                sendResetToDrawBack(Drawing.this);
+                backValue = 1;
                 //path.moveTo(x,y);
                 return true;
             case  MotionEvent.ACTION_MOVE:
@@ -80,12 +80,22 @@ public class Drawing extends View {
     //change color, add new object
     protected void paintSetup(int color){
         colorHolder.add(new ColorHolder(color));
+        //resetDraw(1);
     }
 
     @Override
     public void onDraw(Canvas canvas){
         for(ColorHolder holder : colorHolder){
             canvas.drawPath(holder.path, holder.paint);
+        }
+    }
+
+    public void backBtn1(){
+        try{
+            resetDraw(0);
+            backValue++;
+        }catch (Exception e){
+            //Toast.makeText(this, "No more draw back", Toast.LENGTH_LONG);
         }
     }
 }

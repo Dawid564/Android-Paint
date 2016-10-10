@@ -15,7 +15,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private Drawing dr;
-    private int backValue = 1;
+
+    public MainActivity(){}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +24,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    //back only one path
     public void backBtn(View v){
         try{
             dr = (Drawing) findViewById(R.id.drawing);
-            dr.resetDraw(backValue);
-            backValue++;
+            dr.backBtn1();
         }catch (Exception e){
             Toast.makeText(this, "No more draw back", Toast.LENGTH_LONG);
         }
     }
-
+    
+    //reset all view
     public void resetBtn(View v){
         dr = (Drawing) findViewById(R.id.drawing);
         dr.resetDraw();
