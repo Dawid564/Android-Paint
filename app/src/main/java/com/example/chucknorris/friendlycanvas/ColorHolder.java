@@ -9,12 +9,14 @@ import android.graphics.Path;
  */
 public class ColorHolder {
     private int color;
+    private int brushSize;
     public Path path;
     public Paint paint;
 
 
-    public ColorHolder(int color){
+    public ColorHolder(int color, int brushSize){
         this.color = color;
+        this.brushSize = brushSize;
         init();
     }
 
@@ -24,7 +26,7 @@ public class ColorHolder {
         path = new Path();
         paint = new Paint();
         paint.setColor(this.color);
-        paint.setStrokeWidth(20);
+        paint.setStrokeWidth(brushSize);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStyle(Paint.Style.STROKE);
     }

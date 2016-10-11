@@ -28,7 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/brush"
-                android:src="@drawable/ic_action_brush"/>
+                android:src="@drawable/ic_action_brush"
+                android:onClick="brush"/>
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -42,19 +42,12 @@ public class MainActivity extends AppCompatActivity {
         dr.resetDraw();
     }
 
+    public void brush(View v){
+        dr = (Drawing) findViewById(R.id.drawing);
+        dr.chooseStrokeWidth();
+    }
+
     public void red_color(View v){
-
-        //temporary testing
-        ////////////////////////////////
-
-//        alertDialog.setMessage("hello my frined");
-//        alertDialog.setTitle("HELLO MESSAGE");
-//        alertDialog.create();
-
-
-        ////////////////////////////////
-
-
         setDrawSettings(0xFFFF0000);
     }
 

@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class Drawing extends View {
     private AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
 
     private int backValue = 1;
+    private int changeBrushSize = 20;
 
     public Drawing(Context context){
         super(context);
@@ -56,21 +58,44 @@ public class Drawing extends View {
         invalidate();
     }
 
-    private void chooseStrokeWidth(){
+    public void chooseStrokeWidth(){
+        String[] size = new String[3];
+
         //alertDialogBuilder.setMessage("hello my friend");
         alertDialogBuilder.setTitle("Choose Stroke Width");
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setItems(R.array.brushSize, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                switch(which){
+                    case 0:
+                        changeBrushSize = 20;
+                        break;
+                    case 1:
+                        changeBrushSize = 40;
+                        break;
+                    case 2:
+                        changeBrushSize = 60;
+                        break;
+                    default:
+                        changeBrushSize = 20;
+                        break;
+                }
             }
         });
-        alertDialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
+//        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+//
+//        alertDialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                //do nothing
+//            }
+//        });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
@@ -82,7 +107,7 @@ public class Drawing extends View {
         float y = event.getY();
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                colorHolder.add(new ColorHolder(colorHolder.get(colorHolder.size() - 1).getPaintColor())); // one touch one path
+                colorHolder.add(new ColorHolder(colorHolder.get(colorHolder.size() - 1).getPaintColor(), changeBrushSize)); // one touch one path
                 colorHolder.get(colorHolder.size() - 1).path.moveTo(x,y);
                 backValue = 1;
                 //path.moveTo(x,y);
@@ -93,7 +118,6 @@ public class Drawing extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 //nextPath = new Path(path);
-                chooseStrokeWidth();
                 break;
             default:
                 return false;
@@ -104,8 +128,7 @@ public class Drawing extends View {
 
     //change color, add new object
     protected void paintSetup(int color){
-        colorHolder.add(new ColorHolder(color));
-        //resetDraw(1);
+        colorHolder.add(new ColorHolder(color, changeBrushSize));
     }
 
     @Override
