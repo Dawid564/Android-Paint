@@ -18,9 +18,7 @@ public class ColorHolder {
         init();
     }
 
-    private void sendControlMessage(){
-
-    }
+    private void sendControlMessage(){}
 
     private void init(){
         path = new Path();

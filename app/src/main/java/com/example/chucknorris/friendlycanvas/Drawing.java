@@ -1,6 +1,8 @@
 package com.example.chucknorris.friendlycanvas;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -20,6 +22,8 @@ public class Drawing extends View {
     //private Paint paint;
     //private Path path = new Path();
     private List<ColorHolder> colorHolder = new ArrayList<>();
+    private AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+
     private int backValue = 1;
 
     public Drawing(Context context){
@@ -52,6 +56,26 @@ public class Drawing extends View {
         invalidate();
     }
 
+    private void chooseStrokeWidth(){
+        //alertDialogBuilder.setMessage("hello my friend");
+        alertDialogBuilder.setTitle("Choose Stroke Width");
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event){
         float x = event.getX();
@@ -69,6 +93,7 @@ public class Drawing extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 //nextPath = new Path(path);
+                chooseStrokeWidth();
                 break;
             default:
                 return false;

@@ -1,5 +1,6 @@
 package com.example.chucknorris.friendlycanvas;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private Drawing dr;
+    //private AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
     public MainActivity(){}
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No more draw back", Toast.LENGTH_LONG);
         }
     }
-    
+
     //reset all view
     public void resetBtn(View v){
         dr = (Drawing) findViewById(R.id.drawing);
@@ -41,6 +43,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void red_color(View v){
+
+        //temporary testing
+        ////////////////////////////////
+
+//        alertDialog.setMessage("hello my frined");
+//        alertDialog.setTitle("HELLO MESSAGE");
+//        alertDialog.create();
+
+
+        ////////////////////////////////
+
+
         setDrawSettings(0xFFFF0000);
     }
 
