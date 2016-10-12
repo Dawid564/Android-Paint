@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         dr.chooseStrokeWidth();
     }
 
+    public void saveBtn(View v){
+        dr = (Drawing) findViewById(R.id.drawing);
+        dr.saveToInternalStorage();
+    }
+
     public void red_color(View v){
         setDrawSettings(0xFFFF0000);
     }

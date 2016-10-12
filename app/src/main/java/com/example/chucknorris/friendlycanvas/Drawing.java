@@ -2,8 +2,10 @@ package com.example.chucknorris.friendlycanvas;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -11,6 +13,9 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +43,34 @@ public class Drawing extends View {
     }
 
     public void resetDraw(int i){
-        // i using argument in older version, now is ony for function overload
+        // i using this argument in older version, now is ony for function overload
         //
         colorHolder.get(colorHolder.size()-1).path.reset();
         colorHolder.remove(colorHolder.size()-1);
         invalidate();
+    }
+
+    public String saveToInternalStorage(){
+        Bitmap bitmap = getDrawingCache(); //create bitmap from drawing
+        ContextWrapper contextWrapper = new ContextWrapper(getContext());
+        File directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE); //get dir from contextWrapper
+        File file = new File(directory, "image.jpg");
+
+        //try to save image
+        FileOutputStream fileOutputStream = null;
+        try{
+            fileOutputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                fileOutputStream.close();
+            }catch (Exception c){
+                c.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
     }
 
     public void resetDraw(){
@@ -59,9 +87,6 @@ public class Drawing extends View {
     }
 
     public void chooseStrokeWidth(){
-        String[] size = new String[3];
-
-        //alertDialogBuilder.setMessage("hello my friend");
         alertDialogBuilder.setTitle("Choose Stroke Width");
         alertDialogBuilder.setItems(R.array.brushSize, new DialogInterface.OnClickListener() {
             @Override
@@ -82,21 +107,6 @@ public class Drawing extends View {
                 }
             }
         });
-
-//        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//            }
-//        });
-//
-//        alertDialogBuilder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                //do nothing
-//            }
-//        });
-
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
