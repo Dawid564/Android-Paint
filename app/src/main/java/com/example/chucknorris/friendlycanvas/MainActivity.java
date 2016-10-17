@@ -2,6 +2,7 @@ package com.example.chucknorris.friendlycanvas;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,12 +14,17 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     private Drawing dr;
     //private AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
     public MainActivity(){}
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +53,31 @@ public class MainActivity extends AppCompatActivity {
         dr.chooseStrokeWidth();
     }
 
+    //not working correctly
     public void saveBtn(View v){
         dr = (Drawing) findViewById(R.id.drawing);
         dr.saveToInternalStorage();
+
+
+        /*
+        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
+        File directory = contextWrapper.getDir("japko", 0);
+        File file = new File(directory, "japko1");
+
+        try{
+            FileOutputStream fileOutputStream = openFileOutput("japko2", Context.MODE_APPEND);
+            fileOutputStream.write("wiadomosc".getBytes());
+            fileOutputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        */
+
+
+
+
+//        dr = (Drawing) findViewById(R.id.drawing);
+//        dr.saveToInternalStorage();
     }
 
     public void red_color(View v){

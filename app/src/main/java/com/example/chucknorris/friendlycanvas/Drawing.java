@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,6 +40,7 @@ public class Drawing extends View {
 
     public Drawing(Context context, AttributeSet attrs){
         super(context, attrs);
+        setDrawingCacheEnabled(true); //enables drawing cache
         paintSetup(0xFFFF0000);
     }
 
@@ -51,16 +53,19 @@ public class Drawing extends View {
     }
 
     public String saveToInternalStorage(){
-        Bitmap bitmap = getDrawingCache(); //create bitmap from drawing
+        Bitmap bitmap = getDrawingCache(); //create bitmap from drawing cache
         ContextWrapper contextWrapper = new ContextWrapper(getContext());
         File directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE); //get dir from contextWrapper
-        File file = new File(directory, "image.jpg");
+        File file = new File(directory, "image.png");
 
         //try to save image
         FileOutputStream fileOutputStream = null;
         try{
             fileOutputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+            Toast.makeText(getContext(), "directory ", Toast.LENGTH_LONG).show();
+            fileOutputStream.flush();
+            fileOutputStream.close();
         }catch (Exception e){
             e.printStackTrace();
         }finally {
@@ -70,7 +75,9 @@ public class Drawing extends View {
                 c.printStackTrace();
             }
         }
-        return directory.getAbsolutePath();
+        return null;
+
+        //return null;
     }
 
     public void resetDraw(){

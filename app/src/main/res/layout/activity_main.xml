@@ -41,7 +41,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/save"
                 android:src="@drawable/ic_action_save"
-                android:onClick="saveBtn"/>
+                android:onClick="saveBtn"
+                android:visibility="gone"/>
             <ImageButton
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
@@ -50,7 +51,7 @@
                 android:layout_height="40dp"
                 android:id="@+id/red"
                 android:background="#FFFF0000"
-                android:onClick="red_color"/>
+                android:onClick="red_color" />
             <ImageButton
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
