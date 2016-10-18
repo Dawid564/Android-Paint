@@ -53,31 +53,10 @@ public class MainActivity extends AppCompatActivity {
         dr.chooseStrokeWidth();
     }
 
-    //not working correctly
+    //not working correctly for now
     public void saveBtn(View v){
         dr = (Drawing) findViewById(R.id.drawing);
         dr.saveToInternalStorage();
-
-
-        /*
-        ContextWrapper contextWrapper = new ContextWrapper(getApplicationContext());
-        File directory = contextWrapper.getDir("japko", 0);
-        File file = new File(directory, "japko1");
-
-        try{
-            FileOutputStream fileOutputStream = openFileOutput("japko2", Context.MODE_APPEND);
-            fileOutputStream.write("wiadomosc".getBytes());
-            fileOutputStream.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        */
-
-
-
-
-//        dr = (Drawing) findViewById(R.id.drawing);
-//        dr.saveToInternalStorage();
     }
 
     public void redColor(View v){
@@ -99,12 +78,15 @@ public class MainActivity extends AppCompatActivity {
     public void whiteColor(View v){
         setDrawSettings(0xFFFFFFFF);
     }
+
     public void purpleColor(View v){
         setDrawSettings(0xFF7F00FF);
     }
+
     public void orangeColor(View v){
         setDrawSettings(0xFFFFA500);
     }
+
     public void yellowColor(View v){
         setDrawSettings(0xFFFFFF00);
     }
