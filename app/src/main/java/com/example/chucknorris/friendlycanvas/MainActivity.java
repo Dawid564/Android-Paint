@@ -80,15 +80,15 @@ public class MainActivity extends AppCompatActivity {
 //        dr.saveToInternalStorage();
     }
 
-    public void red_color(View v){
+    public void redColor(View v){
         setDrawSettings(0xFFFF0000);
     }
 
-    public void green_color(View v){
+    public void greenColor(View v){
         setDrawSettings(0xFF00FF00);
     }
 
-    public void blue_color(View v){
+    public void blueColor(View v){
         setDrawSettings(0xFF0000FF);
     }
 
@@ -98,6 +98,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void whiteColor(View v){
         setDrawSettings(0xFFFFFFFF);
+    }
+    public void purpleColor(View v){
+        setDrawSettings(0xFF7F00FF);
+    }
+    public void orangeColor(View v){
+        setDrawSettings(0xFFFFA500);
+    }
+    public void yellowColor(View v){
+        setDrawSettings(0xFFFFFF00);
     }
 
     public void setDrawSettings(int color){

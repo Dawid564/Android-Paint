@@ -51,7 +51,7 @@
                 android:layout_height="40dp"
                 android:id="@+id/red"
                 android:background="#FFFF0000"
-                android:onClick="red_color" />
+                android:onClick="redColor" />
             <ImageButton
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
@@ -60,7 +60,7 @@
                 android:layout_height="40dp"
                 android:id="@+id/green"
                 android:background="#FF00FF00"
-                android:onClick="green_color" />
+                android:onClick="greenColor" />
             <ImageButton
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
@@ -69,7 +69,7 @@
                 android:layout_height="40dp"
                 android:id="@+id/blue"
                 android:background="#FF0000FF"
-                android:onClick="blue_color"/>
+                android:onClick="blueColor"/>
             <ImageButton
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
@@ -88,6 +88,33 @@
                 android:id="@+id/blue2"
                 android:background="#FFFFFFFF"
                 android:onClick="whiteColor"/>
+            <ImageButton
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/purple"
+                android:background="#FF7F00FF"
+                android:onClick="purpleColor"/>
+            <ImageButton
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/orange"
+                android:background="#FFFFA500"
+                android:onClick="orangeColor"/>
+            <ImageButton
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/yellow"
+                android:background="#FFFFFF00"
+                android:onClick="yellowColor"/>
 
         </LinearLayout>
     </HorizontalScrollView>
